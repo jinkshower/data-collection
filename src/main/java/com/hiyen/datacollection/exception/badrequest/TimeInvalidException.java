@@ -1,7 +1,5 @@
 package com.hiyen.datacollection.exception.badrequest;
 
-import java.time.LocalDateTime;
-
 public class TimeInvalidException extends BadRequestException {
 
     private static final String DEFAULT_MESSAGE = "시간이 유효하지 않습니다.";
@@ -11,7 +9,7 @@ public class TimeInvalidException extends BadRequestException {
         super(DEFAULT_MESSAGE);
     }
 
-    public TimeInvalidException(final LocalDateTime time) {
+    public TimeInvalidException(final String time) {
         super(String.format(MESSAGE_FORMAT, time));
     }
 }

@@ -7,9 +7,9 @@ public class Device {
 
     private final Long id;
     private final String serialNumber;
-    private final int stationGroupId;
+    private final Long stationGroupId;
 
-    public Device(final Long id, final String serialNumber, final int stationGroupId) {
+    public Device(final Long id, final String serialNumber, final Long stationGroupId) {
         this.id = id;
         this.serialNumber = serialNumber;
         this.stationGroupId = stationGroupId;
@@ -17,7 +17,7 @@ public class Device {
         validateSerialNumber();
     }
 
-    public Device(final String serialNumber, final int stationGroupId) {
+    public Device(final String serialNumber, final Long stationGroupId) {
         this(null, serialNumber, stationGroupId);
     }
 
@@ -25,5 +25,17 @@ public class Device {
         if (!StringUtils.hasText(this.serialNumber)) {
             throw new SerialNumberInvalidException(this.serialNumber);
         }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public Long getStationGroupId() {
+        return stationGroupId;
     }
 }

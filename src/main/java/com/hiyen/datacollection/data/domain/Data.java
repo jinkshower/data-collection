@@ -3,25 +3,21 @@ package com.hiyen.datacollection.data.domain;
 import com.hiyen.datacollection.exception.badrequest.SerialNumberInvalidException;
 import com.hiyen.datacollection.exception.badrequest.TimeInvalidException;
 import com.hiyen.datacollection.exception.badrequest.ValueInvalidException;
-import java.time.LocalDateTime;
 import java.util.Objects;
 import org.springframework.util.StringUtils;
 
 public class Data {
 
-    private Long id;
-    private String deviceSerialNumber;
-    private Integer value;
-    private LocalDateTime time;
+    private final Long id;
+    private final String deviceSerialNumber;
+    private final Integer dataValue;
+    private final String time;
 
-    protected Data() {
-    }
-
-    public Data(final Long id, final String deviceSerialNumber, final Integer value,
-        final LocalDateTime time) {
+    public Data(final Long id, final String deviceSerialNumber, final Integer dataValue,
+        final String time) {
         this.id = id;
         this.deviceSerialNumber = deviceSerialNumber;
-        this.value = value;
+        this.dataValue = dataValue;
         this.time = time;
 
         validateSerialNumber();
@@ -29,9 +25,9 @@ public class Data {
         validateTime();
     }
 
-    public Data(final String deviceSerialNumber, final Integer value,
-        final LocalDateTime time) {
-        this(null, deviceSerialNumber, value, time);
+    public Data(final String deviceSerialNumber, final Integer dataValue,
+        final String time) {
+        this(null, deviceSerialNumber, dataValue, time);
     }
 
     private void validateSerialNumber() {
@@ -41,14 +37,30 @@ public class Data {
     }
 
     private void validateValue() {
-        if (Objects.isNull(this.value)) {
-            throw new ValueInvalidException(this.value);
+        if (Objects.isNull(this.dataValue)) {
+            throw new ValueInvalidException(this.dataValue);
         }
     }
 
     private void validateTime() {
-        if (Objects.isNull(this.time)) {
+        if (!StringUtils.hasText(this.time)) {
             throw new TimeInvalidException(this.time);
         }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getDeviceSerialNumber() {
+        return deviceSerialNumber;
+    }
+
+    public Integer getDataValue() {
+        return dataValue;
+    }
+
+    public String getTime() {
+        return time;
     }
 }

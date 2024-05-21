@@ -9,15 +9,18 @@ import lombok.Getter;
 public class DataRequest {
 
     @NotBlank
-    private final String serialNumber;
+    private String serialNumber;
     @Min(1)
-    private final int interval;
+    private int interval;
     @NotBlank
     @Pattern(regexp = "^(?=[0-9A-Z]*$)(?:.{4})*$")
-    private final String dataSet;
+    private String dataSet;
     @NotBlank
     @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$")
-    private final String recordedAt;
+    private String recordedAt;
+
+    public DataRequest() {
+    }
 
     public DataRequest(final String serialNumber, final int interval, final String dataSet,
         final String recordedAt) {

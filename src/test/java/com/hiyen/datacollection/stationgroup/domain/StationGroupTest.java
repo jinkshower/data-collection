@@ -1,8 +1,7 @@
-package com.hiyen.datacollection.stationgroup;
+package com.hiyen.datacollection.stationgroup.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import com.hiyen.datacollection.exception.badrequest.SerialNumberInvalidException;
 import org.junit.jupiter.api.DisplayName;

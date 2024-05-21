@@ -1,9 +1,8 @@
-package com.hiyen.datacollection.device;
+package com.hiyen.datacollection.device.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.hiyen.datacollection.device.domain.Device;
 import com.hiyen.datacollection.exception.badrequest.SerialNumberInvalidException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -22,7 +21,7 @@ class DeviceTest {
         void success_to_create() {
             //given
             final var serialNumber = "WX12345";
-            final var stationGroupId = 1;
+            final var stationGroupId = 1L;
 
             //when
             final var actual = new Device(serialNumber, stationGroupId);
@@ -40,7 +39,7 @@ class DeviceTest {
             final String invalidSerialNumber) {
             //given
             final var serialNumber = invalidSerialNumber;
-            final var stationGroupId = 1;
+            final var stationGroupId = 1L;
 
             //when & then
             assertThatThrownBy(() -> new Device(serialNumber, stationGroupId))

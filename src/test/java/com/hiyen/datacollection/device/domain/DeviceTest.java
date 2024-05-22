@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.hiyen.datacollection.exception.badrequest.SerialNumberInvalidException;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -22,14 +23,15 @@ class DeviceTest {
             //given
             final var serialNumber = "WX12345";
             final var stationGroupId = 1L;
+            final var createdAt = LocalDateTime.of(2013, 1, 1, 16, 0, 0);
 
             //when
-            final var actual = new Device(serialNumber, stationGroupId);
+            final var actual = new Device(serialNumber, stationGroupId, createdAt);
 
             //then
             assertThat(actual)
                 .usingRecursiveComparison()
-                .isEqualTo(new Device(serialNumber, stationGroupId));
+                .isEqualTo(new Device(serialNumber, stationGroupId, createdAt));
         }
 
         @DisplayName("serialNumber가 null이거나 비어있을 경우 예외가 발생한다")
@@ -40,9 +42,10 @@ class DeviceTest {
             //given
             final var serialNumber = invalidSerialNumber;
             final var stationGroupId = 1L;
+            final var createdAt = LocalDateTime.of(2013, 1, 1, 16, 0, 0);
 
             //when & then
-            assertThatThrownBy(() -> new Device(serialNumber, stationGroupId))
+            assertThatThrownBy(() -> new Device(serialNumber, stationGroupId, createdAt))
                 .isInstanceOf(SerialNumberInvalidException.class);
         }
     }

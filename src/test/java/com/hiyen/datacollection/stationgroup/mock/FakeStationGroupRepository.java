@@ -1,5 +1,6 @@
 package com.hiyen.datacollection.stationgroup.mock;
 
+import com.hiyen.datacollection.exception.notfound.StationGroupNotFoundException;
 import com.hiyen.datacollection.stationgroup.domain.StationGroup;
 import com.hiyen.datacollection.stationgroup.service.port.StationGroupRepository;
 import java.util.ArrayList;
@@ -16,6 +17,14 @@ public class FakeStationGroupRepository implements StationGroupRepository {
         StationGroup idAssigned = assignId(stationGroup);
         store.add(idAssigned);
         return idAssigned;
+    }
+
+    @Override
+    public StationGroup getById(final long stationGroupId) {
+        return store.stream()
+            .filter(item -> item.getId().equals(stationGroupId))
+            .findAny()
+            .orElseThrow(StationGroupNotFoundException::new);
     }
 
     private StationGroup assignId(StationGroup stationGroup) {

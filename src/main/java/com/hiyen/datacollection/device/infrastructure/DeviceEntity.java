@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "device")
@@ -19,6 +20,8 @@ public class DeviceEntity {
     private String serialNumber;
     @Column(name = "station_group_id")
     private Long stationGroupId;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     protected DeviceEntity() {
     }
@@ -28,10 +31,11 @@ public class DeviceEntity {
         deviceEntity.id = device.getId();
         deviceEntity.serialNumber = device.getSerialNumber();
         deviceEntity.stationGroupId = device.getStationGroupId();
+        deviceEntity.createdAt = device.getCreatedAt();
         return deviceEntity;
     }
 
     public Device toModel() {
-        return new Device(id, serialNumber, stationGroupId);
+        return new Device(id, serialNumber, stationGroupId, createdAt);
     }
 }

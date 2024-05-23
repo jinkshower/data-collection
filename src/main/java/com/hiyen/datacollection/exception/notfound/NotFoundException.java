@@ -1,6 +1,6 @@
 package com.hiyen.datacollection.exception.notfound;
 
-import com.hiyen.datacollection.exception.badrequest.DataCollectionException;
+import com.hiyen.datacollection.exception.DataCollectionException;
 
 public class NotFoundException extends DataCollectionException {
 
@@ -12,5 +12,10 @@ public class NotFoundException extends DataCollectionException {
 
     public NotFoundException(final String message) {
         super(message);
+    }
+
+    @Override
+    public int getStatusCode() {
+        return 404;
     }
 }

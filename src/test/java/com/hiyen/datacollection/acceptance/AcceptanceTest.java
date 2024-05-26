@@ -74,11 +74,13 @@ public class AcceptanceTest {
             .extract();
     }
 
-    protected Executable 응답일치(final ExtractableResponse<Response> response, final HttpStatus httpStatus) {
+    protected Executable 응답일치(final ExtractableResponse<Response> response,
+        final HttpStatus httpStatus) {
         return () -> assertThat(response.statusCode()).isEqualTo(httpStatus.value());
     }
 
-    protected <T> Executable 리스트_데이터_검증(final List list, final String fieldName, final T... expected) {
+    protected <T> Executable 리스트_데이터_검증(final List list, final String fieldName,
+        final T... expected) {
         return () -> assertThat(list).extracting(fieldName).containsExactly(expected);
     }
 

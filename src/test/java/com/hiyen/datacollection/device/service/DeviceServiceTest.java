@@ -47,7 +47,7 @@ class DeviceServiceTest {
         //then
         assertAll(
             () -> assertThat(actual.getSerialNumber()).isEqualTo(serialNumber),
-            () -> assertThat(actual.getStationGroupId()).isEqualTo(stationGroupId),
+            () -> assertThat(actual.getStationGroup().getStationGroupId()).isEqualTo(stationGroupId),
             () -> assertThat(actual.getCreatedAt()).isEqualTo(testNow)
         );
     }

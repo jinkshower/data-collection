@@ -22,12 +22,13 @@ public class Device {
         validateSerialNumber();
     }
 
-    public Device(final String serialNumber, final Long stationGroupId, final LocalDateTime createdAt) {
+    public Device(final String serialNumber, final Long stationGroupId,
+        final LocalDateTime createdAt) {
         this(null, serialNumber, stationGroupId, createdAt);
     }
 
     public static Device from(final String serialNumber, final Long stationGroupId, final
-        ClockHolder clockHolder) {
+    ClockHolder clockHolder) {
         return new Device(serialNumber, stationGroupId, clockHolder.now());
     }
 
